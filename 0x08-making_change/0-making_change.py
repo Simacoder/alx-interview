@@ -11,8 +11,17 @@ def makeChange(coins, total):
     """
     if total <= 0:
         return 0
-    dp = [0] + [float("inf")] * (total)
-    for coin in coins:
-        for i in range(coin, total + 1):
-            dp[i] = min(dp[i], dp[i - coin] + 1)
-    return dp[-1] if dp[-1] != float("inf") else -1
+    if len(coins) is 0:
+        return -1
+    coins = sorted(coins)
+    dynamic = [float('inf')] * (total + 1)
+    dynamic[0] = 0
+    for i in range(total + 1):
+        for coin in coins:
+            if coin > i:
+                break
+            if dynamic[i - coin] != -1:
+                dynamic[i] = min(dynamic[i - coin] + 1, dynamic[i])
+    if dynamic[total] == float('inf'):
+        return -1
+    return dynamic[total]
