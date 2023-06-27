@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 """
-   Program that performs prime game
+   module that performs prime game
 """
 
 
 def isWinner(x, nums):
-    """Function that performs prime game
+    """
+       method that performs prime game determine the winner
     """
     if not nums or x < 1:
         return None
